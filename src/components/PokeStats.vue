@@ -1,15 +1,15 @@
- <template>
+<template>
   <div class="component">
     <table class="stats-table">
       <tr>
-        <th >HEIGHT</th>
-        <th >WEIGHT</th>
-        <th >TYPE</th>
+        <th>HEIGHT</th>
+        <th>WEIGHT</th>
+        <th>TYPE</th>
       </tr>
       <tr>
-        <td id="height">{{pokeHeight/10}}m</td>
-        <td id="weight">{{pokeWeight/10}}kg</td>
-        <td id="type">{{pokeType}}</td>
+        <td id="height">{{ pokeHeight / 10 }}m</td>
+        <td id="weight">{{ pokeWeight / 10 }}kg</td>
+        <td id="type">{{ pokeType }}</td>
       </tr>
     </table>
   </div>
@@ -17,13 +17,13 @@
 
 <script>
 export default {
-  name: 'PokeStats',
+  name: "PokeStats",
   props: {
     pokeWeight: Number,
     pokeHeight: Number,
-    pokeType: String
-  }
-}
+    pokeType: String,
+  },
+};
 </script>
 
 <style scoped>
@@ -49,10 +49,8 @@ a {
 .stats-table {
   background: white;
   width: var(--table-widht);
-  box-shadow: 0 1px 1px rgba(0,0,0,0.12), 
-              0 2px 2px rgba(0,0,0,0.12), 
-              0 4px 4px rgba(0,0,0,0.12), 
-              0 8px 8px rgba(0,0,0,0.12),
-              0 16px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12);
 }
 </style>
