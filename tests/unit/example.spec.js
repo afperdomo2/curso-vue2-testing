@@ -49,3 +49,25 @@ describe("Prueba la calidad de los productos", () => {
     });
   });
 });
+
+describe("Pruebas generada con CodiumAI", () => {
+  /**
+   * Comprueba que la función huevo devuelve un objeto con la propiedad "estado"
+   * establecida en ["fresco"] y "color" establecida en "#000".
+   */
+  it("test_huevo_returns_object_with_estado_fresco_and_color_black", () => {
+    const result = huevo();
+    expect(result.estado).toEqual(["fresco"]);
+    expect(result.color).toEqual("#000");
+  });
+
+  /**
+   * Comprueba que la función huevo devuelve un objeto con una propiedad adicional
+   * "tamaño" establecida en "grande".
+   */
+  it("test_huevo_returns_object_with_additional_property", () => {
+    const result = huevo();
+    result.tamaño = "grande";
+    expect(result.tamaño).toEqual("grande");
+  });
+});
