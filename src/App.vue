@@ -24,6 +24,7 @@
             {{ el }}
           </li>
         </ul>
+        <span><b>Change Test: </b>{{ changeTest }}</span>
       </div>
     </section>
   </div>
@@ -46,6 +47,7 @@ export default {
       height: 0,
       abilities: [],
       data: {},
+      changeTest: 0,
     };
   },
   computed: {
@@ -86,6 +88,8 @@ export default {
         this.abilities = data.abilities;
         this.image = data.sprites;
         this.type = data.type;
+
+        this.changeTest += 1;
       } catch (error) {
         console.log(error);
       }

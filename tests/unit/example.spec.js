@@ -1,18 +1,4 @@
-import { mount } from "@vue/test-utils";
-import App from "@/App";
 import { huevo, espinaca } from "./jestTest";
-
-const wrapper = mount(App);
-/**
- * Un Wrapper contiene un elemento llamado vm, el cual es la
- * instancia de Vue de la cual estamos haciendo el Wrapper
- */
-const vm = wrapper.vm;
-
-console.info("data:", vm.$data);
-//console.info("props:", vm.$props);
-//console.info("el:", vm.$el);
-//console.info("children:", vm.$children);
 
 /**
  * describe(): BLoque de pruebas
