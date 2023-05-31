@@ -3,23 +3,21 @@
     <section class="app-pokemon-main card">
       <img alt="pokemon" :src="image" />
       <p class="pokemon-name">{{ name }}</p>
-      <!--- Descomenta esta linea para probar la funcionalidad completa
       <button class="button" @click.prevent="makeRequest">SEARCH</button>
-       comenta la linea de abajo--->
-      <button class="button" @click.prevent="setData(data)">SEARCH</button>
     </section>
 
     <section class="app-pokemon-stats">
-      <poke-stats :pokeWeight="weight" :pokeHeight="height" :pokeType="type" />
+      <poke-stats
+        :pokeWeight="weight"
+        :pokeHeight="height"
+        :pokeTypes="types"
+      />
 
       <div class="app-pokemon-stats-abilities card">
         <p id="abilities">ABILITIES</p>
         <ul>
-          <li v-for="el in abilities" :key="el">
-            <!---- Descomenta esta linea para probar la funcionalidad completa
-            {{el.ability.name}}
-            comenta la linea de abajo--->
-            {{ el }}
+          <li v-for="(el, index) in abilities" :key="index">
+            {{ el.ability.name }}
           </li>
         </ul>
         <span><b>Change Test: </b>{{ changeTest }}</span>
@@ -30,9 +28,7 @@
 
 <script>
 import PokeStats from "./components/PokeStats.vue";
-import { mockService } from "../public/mockCall";
-// Descomenta esta linea para probar la funcionalidad completa
-//import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "App",
@@ -41,7 +37,8 @@ export default {
     return {
       name: "name",
       image: "",
-      type: "",
+      types: [],
+      principalType: "",
       weight: 0,
       height: 0,
       abilities: [],
@@ -52,7 +49,7 @@ export default {
 
   computed: {
     backImg() {
-      return `var(--${this.type}-back)`;
+      return `var(--${this.principalType}-back)`;
     },
   },
 
@@ -61,53 +58,29 @@ export default {
   },
 
   methods: {
-    //Descomenta esta linea para probar la funcionalidad completa
-    // el 150 es la cantidad de pokemones que van a estar en el loop, cambialo si quieres ver mas, o menos
-    // async makeRequest() {
-    //   let randomSearch = await Math.floor(Math.random() * 150 + 1);
-    //   try {
-    //     const response = await axios.get(
-    //       `https://pokeapi.co/api/v2/pokemon/${randomSearch}`
-    //     );
-    //     const data = response.data;
-    //     this.name = data.name;
-    //     this.weight = data.weight;
-    //     this.height = data.height;
-    //     this.abilities = data.abilities;
-    //     this.image = data.sprites.front_default;
-    //     this.type = data.types.type.name;
-    //     return response;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
-
-    setData(data) {
+    async makeRequest() {
+      const randomSearch = Math.floor(Math.random() * 150 + 1);
       try {
-        const randomSearch = Math.floor(Math.random() * 3);
-        data = data.mock[randomSearch].data;
+        const response = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${randomSearch}`
+        );
+        const data = response.data;
         this.name = data.name;
         this.weight = data.weight;
         this.height = data.height;
         this.abilities = data.abilities;
-        this.image = data.sprites;
-        this.type = data.type;
-
-        this.changeTest += 1;
+        this.image = data.sprites.front_default;
+        this.types = data.types;
+        this.principalType = data.types[0].type.name;
+        return response;
       } catch (error) {
         console.error(error);
       }
     },
   },
 
-  async created() {
-    //Descomenta esta linea para probar la funcionalidad completa
-    //await this.makeRequest();
-    //comenta la funcion de abajo
-    await mockService().then((response) => {
-      this.data = response;
-      this.setData(response);
-    });
+  async mounted() {
+    await this.makeRequest();
   },
 };
 </script>

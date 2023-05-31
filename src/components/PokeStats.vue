@@ -9,7 +9,7 @@
       <tr>
         <td id="height">{{ pokeHeight / 10 }}m</td>
         <td id="weight">{{ pokeWeight / 10 }}kg</td>
-        <td id="type">{{ pokeType }}</td>
+        <td id="type">{{ getStringTypes }}</td>
       </tr>
     </table>
   </div>
@@ -21,7 +21,15 @@ export default {
   props: {
     pokeWeight: Number,
     pokeHeight: Number,
-    pokeType: String,
+    pokeTypes: {
+      type: Array,
+      default: () => []
+    },
+  },
+  computed: {
+    getStringTypes() {
+      return this.pokeTypes.map(({ type }) => type.name).join(", ");
+    },
   },
 };
 </script>
