@@ -8,7 +8,7 @@ const pokemon = {
         sprites:
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
         abilities: ["chlorophyll", "overgrow"],
-        type: "poison",
+        types: ["poison"],
       },
     },
     {
@@ -19,7 +19,7 @@ const pokemon = {
         sprites:
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
         abilities: ["solar-power", "blaze"],
-        type: "fire",
+        types: ["fire"],
       },
     },
     {
@@ -30,7 +30,7 @@ const pokemon = {
         sprites:
           "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
         abilities: ["rain-dish", "torrent"],
-        type: "water",
+        types: ["water"],
       },
     },
   ],
